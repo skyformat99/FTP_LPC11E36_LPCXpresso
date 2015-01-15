@@ -1,4 +1,4 @@
-# NXP FTP Example
+# NXP FTP Server Example
 Common to Any MCU, Easy to Add-on. Internet Offload co-Processor, HW TCP/IP chip, 
 best fits for low-end Non-OS devices connecting to Ethernet for the Internet of Things. These will be updated continuously.
 
