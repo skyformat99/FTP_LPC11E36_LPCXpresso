@@ -148,7 +148,8 @@ int main(void) {
 	   	/* Button: SW1 */
 		if(Check_Buttons_Pressed() == BUTTONS_BUTTON1)
 		{
-			printf("##### SW1 Pressed\r\n");
+			printf("\r\n########## SW1 is pressed.\r\n");
+			printf("########## spiflash flag is reset.\r\n");
 			release_factory_flag();
 		}
 
