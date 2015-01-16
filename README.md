@@ -11,6 +11,7 @@ best fits for low-end Non-OS devices connecting to Ethernet for the Internet of 
 - You must have the initialization process of data flash at least once.
 - When SW1 is pressed, the data flash is initialized by FatFs. And reset a target.
 - You must copy the web page to a data flash by FTP client tool.([ALFTP](http://www.altools.com/ALTools/ALFTP.aspx))
+- Refer to WIZ550web+FatFs+FTPServer Project Tutorial http://youtu.be/XtnT2_CNgaY
 
 ## How to clone a repo of project
 - $ git clone git@github.com:Wiznet/FTP_LPC11E36_LPCXpresso.git
