@@ -144,7 +144,7 @@ int main(void) {
 			printf("%d:loopback_udps error:%ld\r\n",sn+1,ret);
 			break;
 		}
-#endif
+#else
 	   	/* Button: SW1 */
 		if(Check_Buttons_Pressed() == BUTTONS_BUTTON1)
 		{
@@ -159,6 +159,8 @@ int main(void) {
 #endif
 	}
 #endif
+#endif
+
     return 0 ;
 }
 
