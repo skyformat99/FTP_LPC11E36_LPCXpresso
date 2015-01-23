@@ -98,8 +98,6 @@ uint8_t connect_state_data = 0;
 
 struct ftpd ftp;
 
-extern int g_mkfs_done;
-
 int current_year = 2014;
 int current_month = 12;
 int current_day = 31;
