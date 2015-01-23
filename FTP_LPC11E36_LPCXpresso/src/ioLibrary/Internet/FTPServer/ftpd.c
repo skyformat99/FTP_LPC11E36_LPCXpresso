@@ -292,7 +292,8 @@ uint8_t ftpd_run(uint8_t * dbuf)
     				printf("%s\r\n", dbuf);
 #endif
 #if !defined(F_FILESYSTEM)
-    				size = sprintf(dbuf, "drwxr-xr-x 1 ftp ftp 0 Dec 31 2014 $Recycle.Bin\r\n-rwxr-xr-x 1 ftp ftp 512 Dec 31 2014 test.txt\r\n");
+    				if (strncmp(ftp.workingdir, "/$Recycle.Bin", sizeof("/$Recycle.Bin")) != 0)
+    					size = sprintf(dbuf, "drwxr-xr-x 1 ftp ftp 0 Dec 31 2014 $Recycle.Bin\r\n-rwxr-xr-x 1 ftp ftp 512 Dec 31 2014 test.txt\r\n");
 #endif
     				size = strlen(dbuf);
     				send(DATA_SOCK, dbuf, size);
