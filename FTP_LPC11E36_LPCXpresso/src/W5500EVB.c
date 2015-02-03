@@ -157,8 +157,9 @@ int main(void) {
 #if defined(F_APP_FTP)
 		ftpd_run(gFTPBUF);
 #endif
-	}
+
 #endif
+	}
 #endif
 
     return 0 ;
