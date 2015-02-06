@@ -38,14 +38,14 @@
 								<option id="gnu.c.compiler.option.include.paths.1083020903" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/wiznet_evb_w5500evb_board/inc}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/lpc_chip_11exx/inc}&quot;"/>
-									<listOptionValue builtIn="false" value="../src/Application"/>
+									<listOptionValue builtIn="false" value="../src/ioLibrary/Application/loopback"/>
 									<listOptionValue builtIn="false" value="../src/ioLibrary/Ethernet"/>
 									<listOptionValue builtIn="false" value="../src/ioLibrary/Ethernet/W5500"/>
 									<listOptionValue builtIn="false" value="../src/ioLibrary/Internet/DHCP"/>
 									<listOptionValue builtIn="false" value="../src/ioLibrary/Internet/DNS"/>
 									<listOptionValue builtIn="false" value="../src/ioLibrary/Internet/FTPServer"/>
 									<listOptionValue builtIn="false" value="../src/PlatformHandler"/>
-									<listOptionValue builtIn="false" value="../src/PlatformHandler/FatFS"/>
+									<listOptionValue builtIn="false" value="../src/PlatformHandler/FatFs"/>
 									<listOptionValue builtIn="false" value="../src"/>
 								</option>
 								<option id="com.crt.advproject.gcc.exe.debug.option.debugging.level.335776603" name="Debug Level" superClass="com.crt.advproject.gcc.exe.debug.option.debugging.level" value="gnu.c.debugging.level.default" valueType="enumerated"/>

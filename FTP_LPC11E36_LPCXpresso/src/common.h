@@ -13,7 +13,6 @@
 #define _FS_DEBUG_
 
 #define DATA_BUF_SIZE   1024
-#define NULL	0
 
 extern int g_mkfs_done;
 extern int g_sdcard_done;

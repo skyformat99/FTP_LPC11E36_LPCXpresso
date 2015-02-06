@@ -3,7 +3,7 @@
 
 #include "common.h"
 #include "dataflashHandler.h"
-#include "spi_handler.h"
+#include "spiHandler.h"
 
 void DF_BufferToPage (unsigned char BufferNo, unsigned int PageAdr);
 unsigned char df_read_status (void);

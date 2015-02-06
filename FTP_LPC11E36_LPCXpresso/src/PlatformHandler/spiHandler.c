@@ -1,5 +1,5 @@
 #include "board.h"
-#include "spi_handler.h"
+#include "spiHandler.h"
 
 /* Set pin mux for SSP operation */
 static void Init_SSP_PinMux(void)

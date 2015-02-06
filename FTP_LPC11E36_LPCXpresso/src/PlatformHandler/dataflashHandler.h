@@ -3,7 +3,7 @@
 
 #include "board.h"
 #include "common.h"
-#include "spi_handler.h"
+#include "spiHandler.h"
 
 #define DF_SPI_INIT()				SPI_Init()
 

@@ -16,7 +16,7 @@
 #endif
 #endif
 
-#include "spi_handler.h"
+#include "spiHandler.h"
 #include "w5500_init.h"
 #include "common.h"
 #include "loopback.h"
@@ -44,12 +44,48 @@ typedef struct __Cfg_Info {
 #define TICKRATE_HZ2 (1)		/* 1 ticks per second, for Timer0 */
 volatile uint32_t msTicks; 		/* counts 1ms timeTicks */
 
+/*****************************************************************************
+ * Public types/enumerations/variables
+ ****************************************************************************/
+///////////////////////////////////////
+// Debugging Message Printout enable //
+///////////////////////////////////////
+#define _MAIN_DEBUG_
+
+///////////////////////////
+// Demo Firmware Version //
+///////////////////////////
+#define VER_H		1
+#define VER_L		00
+
+//////////////////////////////////////////////////
+// Socket & Port number definition for Examples //
+//////////////////////////////////////////////////
+#define SOCK_TCPS       0
+#define SOCK_UDPS       1
+#define PORT_TCPS		5000
+#define PORT_UDPS       3000
+
 ////////////////////////////////////////////////
 // Shared Buffer Definition for LOOPBACK TEST //
 ////////////////////////////////////////////////
 
 uint8_t gDATABUF[DATA_BUF_SIZE];
 uint8_t gFTPBUF[_MAX_SS];
+
+///////////////////////////
+// Network Configuration //
+///////////////////////////
+wiz_NetInfo gWIZNETINFO = { .mac = {0x00, 0x08, 0xdc, 0xab, 0xcd, 0xef},
+                            .ip = {192, 168, 0, 91},
+                            .sn = {255, 255, 255, 0},
+                            .gw = {192, 168, 0, 1},
+                            .dns = {8, 8, 8, 8},
+                            .dhcp = NETINFO_STATIC };
+
+// For TCP client loopback examples; destination network info
+uint8_t destip[4] = {192, 168, 0, 248};
+uint16_t destport = 5000;
 
 int g_mkfs_done = 0;
 int g_sdcard_done = 0;
@@ -67,10 +103,7 @@ void SysTick_Handler(void);
 
 int main(void) {
 	uint8_t ret = 0;
-	uint8_t sn = 0;
-#if defined(F_APP_FTP)
-	wiz_NetInfo gWIZNETINFO;
-#endif
+    //int32_t loopback_ret;
 
 #if defined (__USE_LPCOPEN)
 #if !defined(NO_BOARD_LIB)
@@ -86,19 +119,23 @@ int main(void) {
 #endif
 #endif
 
-#if 0
-    // TODO: insert code here
-
-    // Force the counter to be placed into memory
-    volatile static int i = 0 ;
-    // Enter an infinite loop, just incrementing a counter
-    while(1) {
-        i++ ;
-    }
-#else
 	SPI_Init();
 	W5500_Init();
-	Net_Conf();
+	Net_Conf(gWIZNETINFO);
+
+#ifdef _MAIN_DEBUG_
+	uint8_t tmpstr[6] = {0,};
+
+	ctlwizchip(CW_GET_ID,(void*)tmpstr);
+
+    printf("\r\n=======================================\r\n");
+	printf(" WIZnet %s EVB Demos v%d.%.2d\r\n", tmpstr, VER_H, VER_L);
+	printf("=======================================\r\n");
+	printf(">> W5500 based FTP Server Example\r\n");
+	printf("=======================================\r\n");
+
+	Display_Net_Conf(); // Print out the network information to serial terminal
+#endif
 
 	/* Enable and setup SysTick Timer at a periodic rate */
 	SysTick_Config(SystemCoreClock / TICKRATE_HZ1);
@@ -109,8 +146,7 @@ int main(void) {
 	g_sdcard_done = 0;
 
 #if defined(F_APP_FTP)
-	ctlnetwork(CN_GET_NETINFO, (void*) &gWIZNETINFO);
-	ftpd_init(CTRL_SOCK, DATA_SOCK, gWIZNETINFO.ip);
+	ftpd_init(gWIZNETINFO.ip);
 #endif
 
 	ret = flash_mount();
@@ -119,32 +155,7 @@ int main(void) {
 		display_SDcard_Info(ret);
 	}
 
-	//df_read_probe();
-
 	while(1) {
-#if LOOPBACK_MODE == LOOPBACK_NONBLOCK_API
-		//Accept for client
-		if((ret = loopback_tcps(sn, gDATABUF, 3000)) < 0)
-		{
-			printf("%d:loopback_tcps error:%ld\r\n",sn,ret);
-			break;
-		}
-		if((ret = loopback_tcps(sn+1, gDATABUF, 3000 + 1)) < 0)
-		{
-			printf("%d:loopback_tcps error:%ld\r\n",sn+1,ret);
-			break;
-		}
-		if((ret = loopback_tcps(sn+2, gDATABUF, 3000 + 2)) < 0)
-		{
-			printf("%d:loopback_tcps error:%ld\r\n",sn+2,ret);
-			break;
-		}
-		if((ret=loopback_udps(sn+3,gDATABUF,10000)) < 0)
-		{
-			printf("%d:loopback_udps error:%ld\r\n",sn+1,ret);
-			break;
-		}
-#else
 	   	/* Button: SW1 */
 		if(Check_Buttons_Pressed() == BUTTONS_BUTTON1)
 		{
@@ -158,9 +169,16 @@ int main(void) {
 		ftpd_run(gFTPBUF);
 #endif
 
-#endif
+		/* Loopback Test: TCP Server and UDP */
+		// Test for Ethernet data transfer validation
+		{
+			//loopback_tcps(SOCK_TCPS, gDATABUF, PORT_TCPS);
+			//loopback_udps(SOCK_UDPS, gDATABUF, PORT_UDPS);
+			//loopback_ret = loopback_tcpc(SOCK_TCPS, gDATABUF, destip, destport);
+
+			//if(loopback_ret < 0) printf("loopback ret: %ld\r\n", loopback_ret); // TCP Socket Error code
+		}
 	}
-#endif
 
     return 0 ;
 }
