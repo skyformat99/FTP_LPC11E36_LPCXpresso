@@ -13,8 +13,15 @@ best fits for low-end Non-OS devices connecting to Ethernet for the Internet of 
 - You must copy the web page to a data flash by FTP client tool.([ALFTP](http://www.altools.com/ALTools/ALFTP.aspx))
 - Refer to W5500EVB+FatFs+FTPServer Project Tutorial. http://youtu.be/-4OCb7YWzlI
 
-## How to clone a repo of project
+## How to add a submodule of ioLibrary in project
+- $ git submodule add git@github.com:Wiznet/ioLibrary_Driver.git project_src/ioLibrary
+- $ git commit -m "description"
+- $ git push
+
+## How to clone a submodule of ioLibrary
 - $ git clone git@github.com:Wiznet/FTP_LPC11E36_LPCXpresso.git
+- $ git submodule init
+- $ git submodule update
 
 ## Revision History
 Last release : Jan. 2015
