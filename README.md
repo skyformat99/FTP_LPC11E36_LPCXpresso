@@ -12,8 +12,8 @@ best fits for low-end Non-OS devices connecting to Ethernet for the Internet of 
 - When SW1 is pressed, the data flash is initialized by FatFs. And reset a target.
 - You must copy the web page to a data flash by FTP client tool.([ALFTP](http://www.altools.com/ALTools/ALFTP.aspx))
 - Refer to W5500EVB+FatFs+FTPServer Project Tutorial. http://youtu.be/-4OCb7YWzlI
-- Refer to WIZ550web+WindowsFTP Tutorial http://youtu.be/kelGSGj3kOQ
-- Refer to WIZ550web+LinuxFTP Tutorial http://youtu.be/6qsPZA5QKEI
+- Refer to WIZ550web+WindowsFTP Tutorial. http://youtu.be/kelGSGj3kOQ
+- Refer to WIZ550web+LinuxFTP Tutorial. http://youtu.be/6qsPZA5QKEI
 
 ## Related Project GitHub Repositories
 - [W5500-EVB Main](https://github.com/Wiznet/W5500_EVB)
