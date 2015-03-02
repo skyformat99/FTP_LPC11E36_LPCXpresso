@@ -12,6 +12,15 @@ best fits for low-end Non-OS devices connecting to Ethernet for the Internet of 
 - When SW1 is pressed, the data flash is initialized by FatFs. And reset a target.
 - You must copy the web page to a data flash by FTP client tool.([ALFTP](http://www.altools.com/ALTools/ALFTP.aspx))
 - Refer to W5500EVB+FatFs+FTPServer Project Tutorial. http://youtu.be/-4OCb7YWzlI
+- Refer to WIZ550web+WindowsFTP Tutorial http://youtu.be/kelGSGj3kOQ
+- Refer to WIZ550web+LinuxFTP Tutorial http://youtu.be/6qsPZA5QKEI
+
+## Related Project GitHub Repositories
+- [W5500-EVB Main](https://github.com/Wiznet/W5500_EVB)
+- [Loopback Test](https://github.com/Wiznet/Loopback_LPC11E36_LPCXpresso): Loopback test example project (TCP server / TCP client / UDP)
+- [HTTP Server](https://github.com/Wiznet/HTTPServer_LPC11E36_LPCXpresso): Web server example project
+- [SNMPv1 Agent](https://github.com/Wiznet/SNMP_LPC11E36_LPCXpresso): SNMPv1 agent example project (Get/Set/Trap)
+- [TFTP Server](https://github.com/Wiznet/TFTP_LPC11E36_LPCXpresso): TFTP example project
 
 ## How to add a submodule of ioLibrary in project
 - $ git submodule add git@github.com:Wiznet/ioLibrary_Driver.git project_src/ioLibrary
